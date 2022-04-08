@@ -1,4 +1,23 @@
-SW JUNGLE
-조원 : 박형규, 신승준, 윤혁
+## SW JUNGLE WEEK02
 
-키워드 : 이분탐색, 분할정복, 스택, 큐, 우선순위 큐
+---
+
+### KeyWord
+
+- 이분탐색, 분할정복, 스택, 큐, 우선순위 큐
+
+---
+
+### Contributors
+
+- 박형규
+
+  ![Alt text](./contributors/park-hg.png)
+
+- 신승준
+
+  ![Alt text](./contributors/metacode22.png)
+
+- 윤혁
+
+  ![Alt text](./contributors/dbsgur.png)
