@@ -17,8 +17,13 @@ flag = [False] * N
 # arr : targets, location : shooters location,
 
 
-def shoot(arr, location):
-    return
+# def shoot(arr, location):
+#     for x in range(N):
+#         for y in range(2):
+#             arr[x][y]
+
+
+#     return
 
 
 print(targets)
