@@ -33,6 +33,3 @@ def install(arr, start, end):
 
 install(homes, 1,  homes[-1] - homes[0])
 print(answer)
-
-
-# i don't know
