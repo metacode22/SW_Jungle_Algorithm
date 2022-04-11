@@ -6,33 +6,17 @@ input = sys.stdin.readline
 
 N, K = map(int, input().split())
 
-number = list(map(int, input().strip()))
+nums = list(map(int, input().strip()))
+stack = []
 
-result = []
-delNum = K
+for num in nums:
+    while stack and stack[-1] < num and K > 0:
+        stack.pop()
+        K -= 1
+    stack.append(num)
 
-for i in range(N):
-    while delNum > 0 and result:
-        if result[-1] < number[i]:
-            result.pop()
-            delNum -= 1
-        else:
-            break
-    result.append(number[i])
+while K > 0:
+    stack.pop()
+    K -= 1
 
-for i in range(N-K):
-    print(result[i], end='')
-
-# count = 0
-
-# start = 0
-# answer = []
-
-# while count < N-K:
-#     tmp = max(number[start:K+count+1])
-#     start += number[start:K+count+1].index(tmp) + 1
-#     count += 1
-#     answer.append(tmp)
-
-# print(*answer)
-# # print(''.join(map(str, answer)))
+print(''.join(stack))
