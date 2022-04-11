@@ -14,7 +14,7 @@ def recur(x, y, n):                 # (x, y)부터 (x+n, y+n)까지 0인지 1인
     if n == 0:
         return
         
-    tot = 0
+    tot = 0                         
     for i in range(x, x + n):       # 현재 recur의 좌표에서 각 원소가 계속 0인지 1인지 확인하겠다.
         for j in range(y, y + n):
             tot += board[i][j]
