@@ -1,15 +1,20 @@
 import sys
+sys.stdin = open('input.txt')
+input = sys.stdin.readline
 
-A, B, C = map(int, sys.stdin.readline().split())
+a, b, c = map(int, input().split())
 
-def rec(x, n):
-    if n == 1:
-        return x%C
-    half = rec(x, n//2)
-    if n%2 == 0:
-        return (half*half)%C
+def recur(x, y):
+    global c
     
-    if n%2 == 1:
-        return (half*half*x)%C
-
-print(rec(A, B))
+    if y == 1:
+        return x % c
+    else:
+        tmp = recur(x, y//2)
+        
+    if y % 2 == 0:
+        return (tmp * tmp) % c
+    elif y % 2 == 1:
+        return (tmp * tmp * x) %c 
+        
+print(recur(a, b))
