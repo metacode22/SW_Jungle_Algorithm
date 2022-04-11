@@ -1,5 +1,5 @@
 import sys
-# sys.stdin = open('input.txt')
+sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 n = int(input())
@@ -12,6 +12,7 @@ b = list(map(int, input().split()))
 def check(x):
     lt = 0
     rt = n - 1
+    print(rt)
 
     while lt <= rt:
         mid = (lt + rt) // 2
