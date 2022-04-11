@@ -1,5 +1,4 @@
 import sys
-# 내꺼
 
 input = sys.stdin.readline
 
