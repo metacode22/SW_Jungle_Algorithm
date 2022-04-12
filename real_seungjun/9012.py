@@ -1,21 +1,26 @@
 import sys
-# sys.stdin = open('input.txt')
+sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
-t = int(input())
+n = int(input())
 
-for _ in range(t):
-    bracket = list(input().rstrip())
+def check(x):
     stack = []
-    for i in bracket:
+    for i in x:
         if i == '(':
             stack.append('(')
-        elif i == ')' and stack != []:
+        elif i == ')' and len(stack) == 0:
+            return 'NO'
+            
+        elif i == ')':
             stack.pop()
-        elif i == ')' and stack == []:
-            stack.append(')')
-
+        
     if len(stack) == 0:
-        print('YES')
+        return 'YES'
     else:
-        print('NO')
+        return 'NO'
+
+for _ in range(n):
+    bracket = list(input().rstrip())
+    
+    print(check(bracket))
