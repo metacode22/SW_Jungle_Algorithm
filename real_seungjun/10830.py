@@ -3,34 +3,33 @@ sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 n, b = map(int, input().split())
-mat = []
+a = [list(map(int, input().split())) for _ in range(n)]
 
-for _ in range(n):
-    mat.append(list(map(int, input().split())))
-    
-def multi(mat_m1, mat_m2):
-    res = [[0] * n for _ in range(n)]
+def mul(m1, m2):
+    m3 = [[0] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
             for k in range(n):
-                res[i][j] += mat_m1[i][k] * mat_m2[k][j]
-            res[i][j] %= 1000
-    return res
+                m3[i][j] += m1[i][k] * m2[k][j]      
+            m3[i][j] %= 1000
+            
+    return m3
 
-def recur(mat_r, b):
-    if b == 1:
+def recur(mat, x):
+    if x == 1:
         for i in range(n):
             for j in range(n):
-                mat_r[i][j] %= 1000
-        return mat_r
+                mat[i][j] %= 1000
+        return mat
+        
     else:
-        tmp = recur(mat_r, b//2)
-        if b % 2 == 0:
-            return multi(tmp, tmp)
+        tmp = recur(mat, x//2)
+        
+        if x % 2 == 0:
+            return mul(tmp, tmp)
         else:
-            return multi(mat_r, multi(tmp, tmp))
+            return mul(mul(tmp, tmp), mat)
 
-res = recur(mat, b)
-
-for i in range(n):
-    print(*res[i])
+res = recur(a, b)
+for i in res:
+    print(*i)

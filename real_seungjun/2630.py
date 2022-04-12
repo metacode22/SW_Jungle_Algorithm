@@ -34,3 +34,37 @@ def recur(x, y, n):                 # (x, y)부터 (x+n, y+n)까지 0인지 1인
 recur(0, 0, n)                      # 0, 0부터 분할정복을 실시하겠다.
 print(zero)
 print(one)
+
+# import sys
+# sys.stdin = open('input.txt')
+# input = sys.stdin.readline
+
+# n = int(input())
+# mat = [list(map(int, input().split())) for _ in range(n)]
+
+# white = 0
+# blue = 0
+# def recur(x, y, N):
+#     global white, blue
+    
+#     tot = 0
+#     for i in range(x, x + N):
+#         for j in range(y, y + N):
+#             tot += mat[i][j]
+    
+#     if tot == 0:
+#         white += 1
+#         return
+#     elif tot == N**2:
+#         blue += 1
+#         return
+#     else:
+#         recur(x, y, N//2)
+#         recur(x, y + N//2, N//2)
+#         recur(x + N//2, y, N//2)
+#         recur(x + N//2, y + N//2, N//2)
+        
+# recur(0, 0, n)
+
+# print(white)
+# print(blue)
