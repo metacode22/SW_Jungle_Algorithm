@@ -1,15 +1,11 @@
 # 다시풀기
 import sys
 
-sys.stdin = open("input_py.txt")
+# sys.stdin = open("input_py.txt")
 input = sys.stdin.readline
 
 N = int(input())
 k = int(input())
-
-left = 0
-right = k
-answer = 0
 
 
 def func(x):
@@ -19,10 +15,16 @@ def func(x):
     return count
 
 
-while left < right:
-    mid = (left + right) // 2
-    if func(mid) < k:
-        left = mid + 1
-    else:
-        right = mid
-print(right)
+def binary():
+    left = 0
+    right = k+1
+    while left < right:
+        mid = (left + right) // 2
+        if func(mid) < k:
+            left = mid + 1
+        else:
+            right = mid
+    return left
+
+
+print(binary())
