@@ -1,21 +1,30 @@
-import sys, heapq
+import sys
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 m, n, l = map(int, input().split())
 mx = list(map(int, input().split()))
-ani = []
-check_list = [0] * n
-for _ in range(n):
-    x, y = map(int, input().split())
-    if not y > l:
-        ani.append([x, y])
-        
-for i in range(0, m):
-    for j in range(0, len(ani)):
-        leng = abs(mx[i] - ani[j][0]) + ani[j][1]
-        
-        if leng <= l:
-            check_list[j] = 1
+ani = [list(map(int, input().split())) for _ in range(n)]
+mx.sort()
 
-print(check_list.count(1))
+cnt = 0 
+for x, y in ani:
+    if y > l:
+        continue
+    
+    lt = 0
+    rt = m - 1
+    min_m = x + y - l
+    max_m = x - y + l
+    while lt <= rt:
+        mid = (lt + rt)//2
+        if min_m <= mx[mid] <= max_m:
+            cnt += 1
+            break    
+        elif mx[mid] < min_m:
+            lt = mid + 1
+        else:
+            rt = mid - 1
+
+print(cnt)
+        
