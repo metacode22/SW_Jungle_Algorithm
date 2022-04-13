@@ -2,29 +2,32 @@ import sys
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
-m, n, l = map(int, input().split())
-mx = list(map(int, input().split()))
-ani = [list(map(int, input().split())) for _ in range(n)]
-mx.sort()
-
-cnt = 0 
-for x, y in ani:
-    if y > l:
-        continue
+def max_size():
+    stack = []
+    max_size = 0
     
-    lt = 0
-    rt = m - 1
-    min_m = x + y - l
-    max_m = x - y + l
-    while lt <= rt:
-        mid = (lt + rt)//2
-        if min_m <= mx[mid] <= max_m:
-            cnt += 1
-            break    
-        elif mx[mid] < min_m:
-            lt = mid + 1
-        else:
-            rt = mid - 1
-
-print(cnt)
+    for i in range(n):
+        min_point = i
+        while stack and stack[-1][0] >= rect[i]:
+            h, min_point = stack.pop()
+            max_size = max(max_size, h * (i - min_point))
+        stack.append([rect[i], min_point])
         
+    # if stack:
+    #     for _ in stack:
+    #         y, x = stack.pop()
+    #         max_size = max(max_size, y * (n - x))
+    
+    for h, point in stack:
+        max_size = max(max_size, (n - point) * h)
+    
+    return max_size
+        
+
+while True:
+    n, *rect = map(int, input().split())
+    
+    if n == 0:
+        break
+    
+    print(max_size())
