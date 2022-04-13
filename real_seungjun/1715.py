@@ -24,3 +24,26 @@ while True:
     
 print(res)
 
+# import sys, heapq
+# sys.stdin = open('input.txt')
+# input = sys.stdin.readline
+
+# n = int(input())
+# a = []
+# for _ in range(n):
+#     card = int(input())
+#     heapq.heappush(a, card)
+
+# res = 0
+# while True:
+#     if len(a) == 1:
+#         break
+#     tmp1 = heapq.heappop(a)
+#     tmp2 = heapq.heappop(a)
+#     tmp = tmp1 + tmp2
+#     res += tmp
+#     heapq.heappush(a, tmp)
+    
+# print(res)
+    
+
