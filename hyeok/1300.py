@@ -18,8 +18,12 @@ def func(x):
 def binary():
     left = 0
     right = k+1
+
+    # func 증가면 < <=
+    # func 감소면 > >=
     while left < right:
         mid = (left + right) // 2
+        # 등호가 같으면 움직인다.
         if func(mid) < k:
             left = mid + 1
         else:
