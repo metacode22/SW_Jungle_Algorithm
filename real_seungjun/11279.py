@@ -1,19 +1,18 @@
-import sys
-import heapq
+import sys, heapq
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 n = int(input())
 a = []
-
 for _ in range(n):
-    cmd = int(input())
-
-    if cmd == 0:
-        if len(a) == 0:
+    x = int(input())
+    
+    if x == 0:
+        if not a:
             print(0)
         else:
-            print(abs(heapq.heappop(a)))
-
+            print(-heapq.heappop(a))
+    
     else:
-        heapq.heappush(a, -cmd)
+        heapq.heappush(a, -x)        
+    
