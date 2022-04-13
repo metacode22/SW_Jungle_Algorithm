@@ -1,66 +1,62 @@
-from collections import deque
 import sys
+from collections import deque
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 n = int(input())
 k = int(input())
-
-graph = [[0] * n for _ in range(n)]
-dx = [0, 1, 0, -1]
-dy = [1, 0, -1, 0]
-
-for i in range(k):
-    a, b = map(int, input().split())
-    graph[a - 1][b - 1] = 2
-
+mat = [[0] * n for _ in range(n)]
+for _ in range(k):
+    x, y = map(int, input().split())
+    mat[x - 1][y - 1] = 2
 l = int(input())
-dirDict = dict()
-queue = deque()
-queue.append((0, 0))
+direction_dict = dict()
+for _ in range(l):
+    x, y = map(str, input().rstrip().split())
+    direction_dict[int(x)] = y
 
-for i in range(l):
-    x, c = input().split()
-    dirDict[int(x)] = c
-
-x, y = 0, 0
-graph[x][y] = 1
-cnt = 0
-direction = 0
-
-def turn(alpha):
-    global direction
-    if alpha == 'L':
+def turn(direction, time):
+    if direction_dict[time] == 'L':
         direction = (direction - 1) % 4
+    # direction_dict[time] == 'D' 일때
     else:
         direction = (direction + 1) % 4
+    return direction
+    
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
 
+direction = 1
+time = 0
+x, y = 0, 0
+mat[x][y] = 1
+visited = deque()
+visited.append([x, y])
 
 while True:
-    cnt += 1
+    time += 1
     x += dx[direction]
     y += dy[direction]
-
+    
     if x < 0 or x >= n or y < 0 or y >= n:
         break
     
-    if graph[x][y] == 2:
-        graph[x][y] = 1
-        queue.append([x, y])
-        if cnt in dirDict:
-            turn(dirDict[cnt])
+    if mat[x][y] == 2:
+        mat[x][y] = 1
+        visited.append([x, y])
+        if time in direction_dict:
+            direction = turn(direction, time)
             
-    elif graph[x][y] == 0:
-        graph[x][y] = 1
-        queue.append([x, y])
-        tx, ty = queue.popleft()
-        graph[tx][ty] = 0
-        if cnt in dirDict:
-            turn(dirDict[cnt])
-            
+    elif mat[x][y] == 0:
+        mat[x][y] = 1
+        visited.append([x, y])
+        front_x, front_y = visited.popleft()
+        mat[front_x][front_y] = 0
+        if time in direction_dict:
+            direction = turn(direction, time)
+    
+    # mat[x][y] == 1, 즉 자신의 몸을 만난 경우        
     else:
         break
     
-print(cnt)
-        
-        
+print(time)
