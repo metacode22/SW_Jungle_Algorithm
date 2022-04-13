@@ -41,7 +41,7 @@ def search():
     global rangeCnt, minCnt
     for i in range(1, H+1):
         downCnt = len(down) - binary(down, i - 0.5, 0, len(down) - 1)
-        upCnt = len(up) - binary(up, h - i + 0.5, 0, len(up) - 1)
+        upCnt = len(up) - binary(up, H - i + 0.5, 0, len(up) - 1)
 
         if minCnt == downCnt + upCnt:
             rangeCnt += 1
